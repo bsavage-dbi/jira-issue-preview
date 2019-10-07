@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    :root {
+      --sh-bg-primary: #fafbfc;
+      --sh-link-primary: #FFFFFF;
+      --sh-link-secondary: #a2a6bc;
+      --sh-link-tertiary: #7e86a8;
+      --sh-popup-width: 140px;
+    }
+
+    body {
+      min-width: var(--sh-popup-width);
+      background: var(--sh-bg-primary);
+      padding: 10px;
+      text-align: center;
+    }
+
+    a {
+      outline: none;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 1.1em;
+      padding: 4px 16px;
+      border-radius: 4px;
+      color: var(--sh-link-primary);
+      background: var(--sh-link-secondary);
+      transition: color 100ms ease-out;
+    }
+
+    a:hover {
+      background: var(--sh-link-tertiary);
+      transition: color 200ms ease-in-out;
+    }
+  </style>
+</head>
+
+<body>
+  <a id="ghToJiraLink" target="_blank">View Jira Ticket</a>
+</body>
+
+</html>

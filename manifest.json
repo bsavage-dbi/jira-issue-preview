@@ -1,0 +1,29 @@
+{
+  "name": "Github To Jira",
+  "version": "1.0",
+  "description": "Sometimes, you need to read more about a given pull request to do a proper review. Developers sometimes don't provide the link to the Jira ticket in their pull requests. You'd have to manually copy the ticket number and search for the ticket on Jira. This extension creates the link to the appropriate Jira ticket for pull requests.",
+  "background": {
+    "scripts": ["src/background/index.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "src/pageAction/index.html",
+    "default_icon": {
+      "16": "images/sh-icon.png",
+      "32": "images/sh-icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/smart-host/smarthost/pull/*"],
+      "js": ["src/contentScripts/index.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/sh-icon.png",
+    "32": "images/sh-icon.png"
+  },
+  "permissions": ["declarativeContent", "activeTab"],
+  "web_accessible_resources": ["config/index.js"],
+  "manifest_version": 2
+}
