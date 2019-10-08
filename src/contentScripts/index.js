@@ -1,18 +1,18 @@
 const exec = config => {
   const {
     PLUGIN_SCOPE,
-    JIRA: { ACTION, ORGANIZATION_NAME, TICKET_ID_REGEX },
     GITHUB_COMMIT_REF_CLASSNAMES,
+    JIRA: { ACTION, ORGANIZATION_NAME, TICKET_ID_REGEX },
   } = config;
 
   const headRef = document.getElementsByClassName(
     GITHUB_COMMIT_REF_CLASSNAMES.COMMIT_HEAD,
   )[0];
-  const ghHeaderMeta = document.getElementsByClassName(
+  const headerMeta = document.getElementsByClassName(
     GITHUB_COMMIT_REF_CLASSNAMES.COMMIT_META,
   )[0];
 
-  if (headRef && ghHeaderMeta) {
+  if (headRef && headerMeta) {
     const branchName = headRef.innerText;
     const ticketIDMatch = (branchName.match(TICKET_ID_REGEX) || [])[0];
 
@@ -35,7 +35,7 @@ const exec = config => {
       linkContainer.classList = GITHUB_COMMIT_REF_CLASSNAMES.SPAN;
       injectedNodeContainer.textContent = '- Resolves ';
       injectedNodeContainer.appendChild(linkContainer);
-      ghHeaderMeta.appendChild(injectedNodeContainer);
+      headerMeta.appendChild(injectedNodeContainer);
     }
   }
 };

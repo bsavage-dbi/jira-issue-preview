@@ -23,7 +23,11 @@
     "16": "images/sh-icon.png",
     "32": "images/sh-icon.png"
   },
-  "permissions": ["declarativeContent", "activeTab"],
+  "permissions": [
+    "https://github.com/smart-host/smarthost/pull/*",
+    "declarativeContent",
+    "activeTab"
+  ],
   "web_accessible_resources": ["config/index.js"],
   "manifest_version": 2
 }
