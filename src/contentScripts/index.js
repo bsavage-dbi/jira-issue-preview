@@ -41,4 +41,4 @@ const exec = config => {
 };
 
 const configUrl = chrome.runtime.getURL('config/index.js');
-const config = import(configUrl).then(exec);
+import(configUrl).then(exec);
