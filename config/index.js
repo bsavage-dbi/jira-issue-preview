@@ -1,11 +1,9 @@
 export const GITHUB_REPOSITORY_URL =
-  'Github repository url e.g https://github.com/<username>/<repositoryName>'; // required
+  'https://github.com/<username>/<repositoryName>'; // -- required
 
 export const JIRA = {
-  ORGANIZATION_NAME:
-    'Your Atlassian organization name derived from https://<organizationName>.atlassian.net', // required
-  TICKET_ID_REGEX:
-    'regular expression to match ticket id e.g /TICKET-([10-9]+)/i', // required
+  ORGANIZATION_NAME: 'myOrganization', // derived from https://<myOrganization>.atlassian.net' -- required
+  TICKET_ID_REGEX: /TICKET-([10-9]+)/i, // 'regular expression to match ticket id -- required
   ACTION: 'browse',
 };
 
