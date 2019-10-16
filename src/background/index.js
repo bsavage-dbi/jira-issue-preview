@@ -31,6 +31,4 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(details => {
   }
 });
 
-// TODO: Handle send message handlers.
-// TODO: Excecute content script on load.
-// TODO: Show issue link on checks and file changes tab.
+// TODO: Handle send message errors.
