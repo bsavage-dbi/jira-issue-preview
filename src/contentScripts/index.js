@@ -1,16 +1,17 @@
 const exec = config => {
   const {
-    PLUGIN_SCOPE,
-    GITHUB_COMMIT_REF_CLASSNAMES,
+    APP,
+    GITHUB_CLASSNAMES,
     JIRA: { ACTION, ORGANIZATION_NAME, TICKET_ID_REGEX },
   } = config;
 
-  const headRef = document.getElementsByClassName(
-    GITHUB_COMMIT_REF_CLASSNAMES.COMMIT_HEAD,
-  )[0];
-  const headerMeta = document.getElementsByClassName(
-    GITHUB_COMMIT_REF_CLASSNAMES.COMMIT_META,
-  )[0];
+  const getFirstOfType = className =>
+    document.getElementsByClassName(className)[0];
+  const headRef = getFirstOfType(GITHUB_CLASSNAMES.COMMIT_HEAD);
+  const headerMeta = getFirstOfType(GITHUB_CLASSNAMES.COMMIT_META);
+  const nodeExists = Boolean(getFirstOfType(APP.CONTAINER_CLASSNAME));
+
+  if (nodeExists) return; // prevent creating multiple links.
 
   if (headRef && headerMeta) {
     const branchName = headRef.innerText;
@@ -24,16 +25,17 @@ const exec = config => {
       const linkContainer = document.createElement('span');
       const jiraLink = document.createElement('a');
 
-      jiraLink.id = `${PLUGIN_SCOPE}-${ticketID}`;
+      jiraLink.id = `${ORGANIZATION_NAME}-${APP.SCOPE}-TICKET-${ticketID}`;
       jiraLink.title = ticketURL;
       jiraLink.href = ticketURL;
-      jiraLink.classList = GITHUB_COMMIT_REF_CLASSNAMES.LINK;
-      jiraLink.textContent = `${PLUGIN_SCOPE}:${ticketID}`;
+      jiraLink.classList = GITHUB_CLASSNAMES.LINK;
+      jiraLink.textContent = `${APP.SCOPE}-TICKET: ${ticketID}`;
       jiraLink.target = '_blank';
 
       linkContainer.appendChild(jiraLink);
-      linkContainer.classList = GITHUB_COMMIT_REF_CLASSNAMES.SPAN;
-      injectedNodeContainer.textContent = '- Resolves ';
+      linkContainer.classList = GITHUB_CLASSNAMES.SPAN;
+      (injectedNodeContainer.classList = APP.CONTAINER_CLASSNAME),
+        (injectedNodeContainer.textContent = '- Resolves ');
       injectedNodeContainer.appendChild(linkContainer);
       headerMeta.appendChild(injectedNodeContainer);
     }
@@ -41,4 +43,9 @@ const exec = config => {
 };
 
 const configUrl = chrome.runtime.getURL('config/index.js');
-import(configUrl).then(exec);
+import(configUrl).then(config => {
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    exec(config);
+    return sendResponse(true);
+  });
+});
