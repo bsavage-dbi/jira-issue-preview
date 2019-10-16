@@ -44,8 +44,9 @@ const exec = config => {
 
 const configUrl = chrome.runtime.getURL('config/index.js');
 import(configUrl).then(config => {
+  exec(config);
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     exec(config);
-    return sendResponse(true);
+    return sendResponse(Promise.resolve(true));
   });
 });
