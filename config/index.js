@@ -7,11 +7,16 @@ export const JIRA = {
   ACTION: 'browse',
 };
 
-export const GITHUB_COMMIT_REF_CLASSNAMES = {
+export const GITHUB_CLASSNAMES = {
   SPAN: 'commit-ref',
   LINK: 'no-underline',
   COMMIT_HEAD: 'head-ref',
   COMMIT_META: 'TableObject-item--primary',
 };
 
-export const PLUGIN_SCOPE = 'JIRA-TICKET';
+export const APP = {
+  SCOPE: 'JIRA',
+  CONTAINER_CLASSNAME: 'ISSUE-PREVIEW-CONTAINER',
+};
+
+export const PULL_REQUEST_PATH = '/pull/';
