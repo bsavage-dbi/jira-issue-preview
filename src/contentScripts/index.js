@@ -34,8 +34,8 @@ const exec = config => {
 
       linkContainer.appendChild(jiraLink);
       linkContainer.classList = GITHUB_CLASSNAMES.SPAN;
-      (injectedNodeContainer.classList = APP.CONTAINER_CLASSNAME),
-        (injectedNodeContainer.textContent = '- Resolves ');
+      injectedNodeContainer.classList = APP.CONTAINER_CLASSNAME;
+      injectedNodeContainer.textContent = '- Resolves ';
       injectedNodeContainer.appendChild(linkContainer);
       headerMeta.appendChild(injectedNodeContainer);
     }
